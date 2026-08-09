@@ -84,6 +84,15 @@ Use the run button in your IDE's editor gutter, or run the desktop tests with:
 ./gradlew :shared:jvmTest
 ```
 
+Desktop screenshot tests use [Roborazzi](https://github.com/takahirom/roborazzi). The root test captures both the initial UI and its expanded state after clicking the button. Ordinary `jvmTest` and IDE test runs verify screenshots by default. Record approved reference images only after reviewing an intentional UI change, or run verification explicitly:
+
+```shell
+./gradlew :shared:recordRoborazziJvm
+./gradlew :shared:verifyRoborazziJvm
+```
+
+Reference images are stored in `shared/src/jvmTest/screenshots/`. Roborazzi's Compose Desktop support is experimental, and screenshots can vary across operating systems, fonts, and graphics environments. Until a canonical CI environment is configured, reference images should be recorded and verified on the same environment.
+
 ## License
 
 Anki Deck Builder is available under the [MIT License](LICENSE.md). See [Third-Party Notices](THIRD_PARTY_NOTICES.md) for dependency licenses and the Anki compatibility notice.

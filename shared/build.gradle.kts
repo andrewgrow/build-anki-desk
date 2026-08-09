@@ -2,12 +2,12 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.roborazzi)
 }
 
 kotlin {
     jvm()
-    
-    
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -24,5 +24,16 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        jvmTest.dependencies {
+            implementation(compose.desktop.uiTestJUnit4)
+            implementation(libs.roborazzi.composeDesktop)
+        }
+    }
+}
+
+roborazzi {
+    outputDir.set(file("src/jvmTest/screenshots"))
+    compare {
+        outputDir.set(layout.buildDirectory.dir("outputs/roborazzi-comparison"))
     }
 }

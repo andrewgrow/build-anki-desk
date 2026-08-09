@@ -23,6 +23,7 @@ Third-party software remains subject to its own license terms. The following tab
 | Decompose and Essenty | 3.5.0 / 2.5.0 | Apache License 2.0 | [Decompose license](https://github.com/arkivanov/Decompose/blob/master/LICENSE), [Essenty license](https://github.com/arkivanov/Essenty/blob/master/LICENSE) |
 | kotlinx.coroutines | 1.11.0 | Apache License 2.0 | [kotlinx.coroutines license](https://github.com/Kotlin/kotlinx.coroutines/blob/master/LICENSE.txt) |
 | Klogging | 0.11.8 | Apache License 2.0 | [Klogging license](https://github.com/klogging/klogging/blob/main/LICENSE.txt) |
+| Roborazzi | 1.70.0 | Apache License 2.0 | [Roborazzi license](https://github.com/takahirom/roborazzi/blob/main/LICENSE) |
 | JUnit 4 | 4.13.2 | Eclipse Public License 1.0 | [JUnit 4 license](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) |
 | Gradle Wrapper and Gradle build tool | 9.1.0 | Apache License 2.0 | [Gradle license](https://github.com/gradle/gradle/blob/master/LICENSE) |
 
