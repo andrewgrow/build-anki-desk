@@ -1,4 +1,4 @@
-package org.example.project
+package org.example.project.compose
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -13,17 +13,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.resources.painterResource
 
 import kotlinproject.shared.generated.resources.Res
 import kotlinproject.shared.generated.resources.compose_multiplatform
+import org.example.project.Greeting
+import org.example.project.application.RootComponent
 
 @Composable
-@Preview
-fun App() {
+fun RootContent(component: RootComponent) {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
+
         Column(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.primaryContainer)
@@ -34,8 +35,10 @@ fun App() {
             Button(onClick = { showContent = !showContent }) {
                 Text("Click me!")
             }
+
             AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
+                val platformName = component.platform.name
+                val greeting = remember(platformName) { Greeting().greet(platformName) }
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
