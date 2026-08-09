@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-Anki Deck Builder is licensed under the [MIT License](LICENSE). This document records compatibility information and the separate license terms of third-party software used by the project. It does not change the license of Anki Deck Builder.
+Anki Deck Builder is licensed under the [MIT License](LICENSE.md). This document records compatibility information and the separate license terms of third-party software used by the project. It does not change the license of Anki Deck Builder.
 
 ## Anki compatibility notice
 

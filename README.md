@@ -84,4 +84,4 @@ Use the run button in your IDE's editor gutter, or run the desktop tests with:
 
 ## License
 
-Anki Deck Builder is available under the [MIT License](LICENSE). See [Third-Party Notices](THIRD_PARTY_NOTICES.md) for dependency licenses and the Anki compatibility notice.
+Anki Deck Builder is available under the [MIT License](LICENSE.md). See [Third-Party Notices](THIRD_PARTY_NOTICES.md) for dependency licenses and the Anki compatibility notice.
