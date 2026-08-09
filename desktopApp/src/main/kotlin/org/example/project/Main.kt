@@ -18,7 +18,7 @@ fun runApplication(rootComponent: RootComponent) {
     application {
         Window(
             onCloseRequest = ::exitApplication,
-            title = "KotlinProject",
+            title = "The Anki Deck Builder",
         ) {
             RootContent(rootComponent)
         }

@@ -1,6 +1,6 @@
 # Anki Deck Builder
 
-A local desktop application for creating, reviewing, and exporting custom Anki decks. It is built with Kotlin/JVM and Compose Multiplatform Desktop.
+A local desktop application for creating, reviewing, and exporting custom decks as Anki-compatible `.apkg` files. It is built with Kotlin/JVM and Compose Multiplatform Desktop.
 
 The application is intended to manage the complete deck-building workflow:
 
@@ -8,9 +8,16 @@ The application is intended to manage the complete deck-building workflow:
 2. Manage notes, generated cards, and their fields.
 3. Add and organize images, audio, and other media.
 4. Review, edit, validate, and approve content.
-5. Export an approved deck as an Anki `.apkg` package.
+5. Export an approved deck as an Anki-compatible `.apkg` package.
+6. Import the generated package into a separately installed Anki application.
 
 An Anki note contains the editable fields, while one or more cards can be generated from that note using card templates. The application will preserve this distinction so it can support custom note types and multiple card templates.
+
+## Intended use and Anki compatibility
+
+The application is an independent deck-authoring tool. Its purpose is limited to preparing content and generating `.apkg` files that can be imported into Anki by the user. It does not bundle, modify, launch, or distribute the Anki application, and it does not use Anki source code as an application dependency.
+
+Anki Deck Builder is not affiliated with or endorsed by the Anki project. The name "Anki" is used only to describe compatibility with the package format and the intended destination application. Anki is available separately from [the official Anki website](https://apps.ankiweb.net/).
 
 ## Architecture
 
@@ -74,7 +81,3 @@ Use the run button in your IDE's editor gutter, or run the desktop tests with:
 ```shell
 ./gradlew :shared:jvmTest
 ```
-
----
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html).
