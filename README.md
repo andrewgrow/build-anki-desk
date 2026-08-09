@@ -31,6 +31,8 @@ The Kotlin application owns the desktop UI, application logic, and local project
 - export manifest generation;
 - Anki package export.
 
+[Decompose](https://arkivanov.github.io/Decompose/) provides lifecycle-aware application components and keeps component logic separate from Compose content. The initial integration contains only the root component and desktop lifecycle; navigation and screen-specific child components will be introduced with the first real workflows.
+
 Anki package generation is delegated internally to a small Python worker using the `genanki` library. The worker consumes a manifest and local media prepared by the Kotlin application and produces the final `.apkg` file. Python is an implementation detail and does not provide a separate backend or user interface.
 
 The application is local and single-user. Initial project data can be stored in JSON files and media directories; a database can be introduced later if needed.
