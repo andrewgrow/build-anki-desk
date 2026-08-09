@@ -1,4 +1,4 @@
-package org.example.project
+package ankideckbuilder.shared
 
 interface Platform {
     val name: String

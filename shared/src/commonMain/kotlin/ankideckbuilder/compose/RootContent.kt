@@ -1,4 +1,4 @@
-package org.example.project.compose
+package ankideckbuilder.compose
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -15,10 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.painterResource
 
-import kotlinproject.shared.generated.resources.Res
-import kotlinproject.shared.generated.resources.compose_multiplatform
-import org.example.project.Greeting
-import org.example.project.application.RootComponent
+import ankideckbuilder.shared.generated.resources.Res
+import ankideckbuilder.shared.generated.resources.compose_multiplatform
+import ankideckbuilder.application.RootComponent
 
 @Composable
 fun RootContent(component: RootComponent) {
