@@ -1,23 +1,83 @@
+# Anki Deck Builder
+
+A local desktop application for creating, reviewing, and exporting custom decks as Anki-compatible `.apkg` files. It is built with Kotlin/JVM and Compose Multiplatform Desktop.
+
+The application is intended to manage the complete deck-building workflow:
+
+1. Create or import deck content.
+2. Manage notes, generated cards, and their fields.
+3. Add and organize images, audio, and other media.
+4. Review, edit, validate, and approve content.
+5. Export an approved deck as an Anki-compatible `.apkg` package.
+6. Import the generated package into a separately installed Anki application.
+
+An Anki note contains the editable fields, while one or more cards can be generated from that note using card templates. The application will preserve this distinction so it can support custom note types and multiple card templates.
+
+## Intended use and Anki compatibility
+
+The application is an independent deck-authoring tool. Its purpose is limited to preparing content and generating `.apkg` files that can be imported into Anki by the user. It does not bundle, modify, launch, or distribute the Anki application, and it does not use Anki source code as an application dependency.
+
+Anki Deck Builder is not affiliated with or endorsed by the Anki project. The name "Anki" is used only to describe compatibility with the package format and the intended destination application. Anki is available separately from [the official Anki website](https://apps.ankiweb.net/).
+
+## Architecture
+
+The Kotlin application owns the desktop UI, application logic, and local project storage. Its handlers/services will cover:
+
+- projects and decks;
+- notes, cards, fields, and templates;
+- images, audio, and other media;
+- importing and batch operations;
+- review, validation, and approval;
+- export manifest generation;
+- Anki package export.
+
+Anki package generation is delegated internally to a small Python worker using the `genanki` library. The worker consumes a manifest and local media prepared by the Kotlin application and produces the final `.apkg` file. Python is an implementation detail and does not provide a separate backend or user interface.
+
+The application is local and single-user. Initial project data can be stored in JSON files and media directories; a database can be introduced later if needed.
+
+## Initial milestone
+
+The first milestone is a minimal end-to-end pipeline for one note/card:
+
+```text
+content and media -> local review -> approval -> valid Anki package
+```
+
+After that, the application can grow to support importing, batch processing, regeneration controls, caching, custom templates, and release management.
+
+## Project structure
+
 This is a Kotlin Multiplatform project targeting Desktop (JVM).
 
-### Running the apps
+- `desktopApp` contains the desktop application entry point and packaging configuration.
+- `shared/src/commonMain` contains shared UI and application code.
+- `shared/src/jvmMain` contains JVM-specific implementations.
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+## Running the application
 
-- Desktop app:
-  - Hot reload: `./gradlew :desktopApp:hotRun --auto`
-  - Standard run: `./gradlew :desktopApp:run`
+Use the run configurations provided by the run widget in your IDE's toolbar, or use one of these commands:
 
-- Build a standalone application:
-  - `./gradlew :desktopApp:createDistributable` (artifact is building here `desktopApp/build/compose/binaries/main/app/`)
-  - Then launch the generated app: (Terminal) `open desktopApp/build/compose/binaries/main/app/org.example.project.app`
+- Hot reload: `./gradlew :desktopApp:hotRun --auto`
+- Standard run: `./gradlew :desktopApp:run`
 
-### Running tests
+To build a standalone application:
 
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
+```shell
+./gradlew :desktopApp:createDistributable
+```
 
-- Desktop tests: `./gradlew :shared:jvmTest`
+The generated application is placed in `desktopApp/build/compose/binaries/main/app/`.
 
----
+On macOS, launch it with:
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+```shell
+open desktopApp/build/compose/binaries/main/app/org.example.project.app
+```
+
+## Running tests
+
+Use the run button in your IDE's editor gutter, or run the desktop tests with:
+
+```shell
+./gradlew :shared:jvmTest
+```
