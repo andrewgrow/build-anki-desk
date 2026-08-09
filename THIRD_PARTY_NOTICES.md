@@ -1,0 +1,31 @@
+# Third-Party Notices
+
+Anki Deck Builder is licensed under the [MIT License](LICENSE.md). This document records compatibility information and the separate license terms of third-party software used by the project. It does not change the license of Anki Deck Builder.
+
+## Anki compatibility notice
+
+This software is independently developed for the limited purpose of creating Anki-compatible `.apkg` files. Users may import those files into a separately obtained installation of Anki.
+
+This software does not bundle, modify, launch, or distribute the Anki application, and it does not use Anki source code as an application dependency. Anki is therefore not listed below as a bundled third-party component. The Anki application and its source code remain subject to their own license terms, which are available in the [official Anki repository](https://github.com/ankitects/anki/blob/main/LICENSE).
+
+Anki Deck Builder is not affiliated with or endorsed by the Anki project. The name "Anki" is used only to describe compatibility with the package format and the intended destination application. No Anki logo or other Anki project asset is included by this notice.
+
+## Third-party software
+
+Third-party software remains subject to its own license terms. The following table records the primary libraries and build tools currently declared by the project.
+
+| Project | Version used | License | License reference |
+| --- | --- | --- | --- |
+| Kotlin, Kotlin Gradle plugins, and Kotlin Test | 2.4.10 | Apache License 2.0 | [Kotlin license](https://github.com/JetBrains/kotlin/blob/master/license/LICENSE.txt) |
+| Compose Multiplatform | 1.11.1 | Apache License 2.0 | [Compose Multiplatform license](https://github.com/JetBrains/compose-multiplatform/blob/master/LICENSE.txt) |
+| Compose Material 3 | 1.11.0-alpha07 | Apache License 2.0 | [AndroidX license](https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt) |
+| AndroidX Lifecycle for Compose | 2.11.0-beta01 | Apache License 2.0 | [AndroidX license](https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt) |
+| kotlinx.coroutines | 1.11.0 | Apache License 2.0 | [kotlinx.coroutines license](https://github.com/Kotlin/kotlinx.coroutines/blob/master/LICENSE.txt) |
+| Klogging | 0.11.8 | Apache License 2.0 | [Klogging license](https://github.com/klogging/klogging/blob/main/LICENSE.txt) |
+| JUnit 4 | 4.13.2 | Eclipse Public License 1.0 | [JUnit 4 license](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) |
+| Gradle Wrapper and Gradle build tool | 9.1.0 | Apache License 2.0 | [Gradle license](https://github.com/gradle/gradle/blob/master/LICENSE) |
+| Foojay Toolchains Plugin | 1.0.0 | Apache License 2.0 | [Foojay Toolchains license](https://github.com/gradle/foojay-toolchains/blob/main/LICENSE) |
+
+The license references above are provided for convenience. The license and notice files distributed with each dependency are authoritative. Dependencies may also bring transitive software with additional notices or license terms. Before distributing an application package, the resolved dependency graph must be reviewed and all notices required by the packaged software must be included with the release.
+
+This document must be updated whenever a third-party library or build tool is added, removed, or upgraded. Planned dependencies are not listed until they are added to the project.
