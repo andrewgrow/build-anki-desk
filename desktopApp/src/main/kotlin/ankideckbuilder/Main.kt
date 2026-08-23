@@ -9,9 +9,9 @@ import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.swing.Swing
-import ankideckbuilder.application.DefaultRootComponent
-import ankideckbuilder.application.RootComponent
-import ankideckbuilder.compose.RootContent
+import ankideckbuilder.ui.components.application.DefaultRootComponent
+import ankideckbuilder.ui.components.application.RootComponent
+import ankideckbuilder.ui.compose.application.RootContent
 import javax.swing.SwingUtilities
 
 // default JVM entry point

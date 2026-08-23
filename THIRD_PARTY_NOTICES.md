@@ -20,11 +20,17 @@ Third-party software remains subject to its own license terms. The following tab
 | Compose Multiplatform | 1.11.1 | Apache License 2.0 | [Compose Multiplatform license](https://github.com/JetBrains/compose-multiplatform/blob/master/LICENSE.txt) |
 | Compose Material 3 | 1.11.0-alpha07 | Apache License 2.0 | [AndroidX license](https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt) |
 | AndroidX Lifecycle for Compose | 2.11.0-beta01 | Apache License 2.0 | [AndroidX license](https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt) |
+| Room | 3.0.1 | Apache License 2.0 | [AndroidX license](https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt) |
+| AndroidX SQLite | 2.7.0 | Apache License 2.0 | [AndroidX license](https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt) |
+| SQLite | Bundled by AndroidX SQLite 2.7.0 | Public domain | [SQLite copyright](https://www.sqlite.org/copyright.html) |
 | Decompose and Essenty | 3.5.0 / 2.5.0 | Apache License 2.0 | [Decompose license](https://github.com/arkivanov/Decompose/blob/master/LICENSE), [Essenty license](https://github.com/arkivanov/Essenty/blob/master/LICENSE) |
 | kotlinx.coroutines | 1.11.0 | Apache License 2.0 | [kotlinx.coroutines license](https://github.com/Kotlin/kotlinx.coroutines/blob/master/LICENSE.txt) |
+| kotlinx-datetime | 0.8.0 compatibility artifact (`0.8.0-0.6.x-compat`) | Apache License 2.0 | [kotlinx-datetime license](https://github.com/Kotlin/kotlinx-datetime/blob/master/LICENSE.txt) |
 | Klogging | 0.11.8 | Apache License 2.0 | [Klogging license](https://github.com/klogging/klogging/blob/main/LICENSE.txt) |
+| Kotlin Symbol Processing (KSP) | 2.3.11 | Apache License 2.0 | [KSP license](https://github.com/google/ksp/blob/main/LICENSE) |
+| Roborazzi | 1.70.0 | Apache License 2.0 | [Roborazzi license](https://github.com/takahirom/roborazzi/blob/main/LICENSE) |
 | JUnit 4 | 4.13.2 | Eclipse Public License 1.0 | [JUnit 4 license](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) |
-| Gradle Wrapper and Gradle build tool | 9.1.0 | Apache License 2.0 | [Gradle license](https://github.com/gradle/gradle/blob/master/LICENSE) |
+| Gradle Wrapper and Gradle build tool | 9.3.1 | Apache License 2.0 | [Gradle license](https://github.com/gradle/gradle/blob/master/LICENSE) |
 
 The license references above are provided for convenience. The license and notice files distributed with each dependency are authoritative. Dependencies may also bring transitive software with additional notices or license terms. Before distributing an application package, the resolved dependency graph must be reviewed and all notices required by the packaged software must be included with the release.
 
