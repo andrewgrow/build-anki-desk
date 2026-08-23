@@ -9,8 +9,9 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.v2.runComposeUiTest
 import androidx.compose.ui.unit.dp
-import ankideckbuilder.application.RootComponent
-import ankideckbuilder.shared.Platform
+import ankideckbuilder.ui.components.application.RootComponent
+import ankideckbuilder.shared.PlatformDependency
+import ankideckbuilder.ui.compose.application.RootContent
 import io.github.takahirom.roborazzi.captureRoboImage
 import kotlin.test.Test
 
@@ -34,7 +35,7 @@ class RootContentScreenshotTest {
 }
 
 private object TestRootComponent : RootComponent {
-    override val platform = object : Platform {
+    override val platform = object : PlatformDependency {
         override val name = "Screenshot Test"
     }
 }

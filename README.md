@@ -35,7 +35,7 @@ The Kotlin application owns the desktop UI, application logic, and local project
 
 Anki package generation is delegated internally to a small Python worker using the `genanki` library. The worker consumes a manifest and local media prepared by the Kotlin application and produces the final `.apkg` file. Python is an implementation detail and does not provide a separate backend or user interface.
 
-The application is local and single-user. Initial project data can be stored in JSON files and media directories; a database can be introduced later if needed.
+The application is local and single-user. Structured project metadata is stored locally in a [Room](https://developer.android.com/kotlin/multiplatform/room) database backed by bundled SQLite. Room entities and DAOs live in shared code, while the JVM-specific database builder selects the correct application-data directory for macOS, Windows, or Linux. Timestamps use `Instant` with [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime) and are persisted as Unix epoch milliseconds. Generated images and audio remain regular files; the database will store their paths and metadata rather than binary media.
 
 ## Initial milestone
 
@@ -78,7 +78,13 @@ open desktopApp/build/compose/binaries/main/app/org.example.project.app
 
 ## Running tests
 
-Use the run button in your IDE's editor gutter, or run the desktop tests with:
+Use the run button in your IDE's editor gutter, or run all test suites at once from the project root:
+
+```shell
+./gradlew allTests
+```
+
+This currently runs the shared JVM unit and database integration tests together with Roborazzi screenshot verification. To run only the shared desktop tests, use:
 
 ```shell
 ./gradlew :shared:jvmTest

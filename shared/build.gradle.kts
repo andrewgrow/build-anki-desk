@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.roborazzi)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -19,7 +21,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.decompose)
+            implementation(libs.kotlinx.coroutinesCore)
+            api(libs.kotlinx.datetime)
             implementation(libs.klogging)
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -29,6 +35,14 @@ kotlin {
             implementation(libs.roborazzi.composeDesktop)
         }
     }
+}
+
+dependencies {
+    add("kspJvm", libs.room.compiler)
+}
+
+room3 {
+    schemaDirectory("$projectDir/schemas")
 }
 
 roborazzi {
