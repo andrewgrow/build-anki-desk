@@ -90,6 +90,12 @@ This currently runs the shared JVM unit and database integration tests together 
 ./gradlew :shared:jvmTest
 ```
 
+Gradle skips tests when nothing has changed since the last run. To force a full re-run (for example, to verify a clean state before pushing, or when test results look stale or flaky), clean the test outputs and disable the build cache:
+
+```shell
+./gradlew cleanJvmTest allTests --no-build-cache
+```
+
 Desktop screenshot tests use [Roborazzi](https://github.com/takahirom/roborazzi). The root test captures both the initial UI and its expanded state after clicking the button. Ordinary `jvmTest` and IDE test runs verify screenshots by default. Record approved reference images only after reviewing an intentional UI change, or run verification explicitly:
 
 ```shell
@@ -98,6 +104,14 @@ Desktop screenshot tests use [Roborazzi](https://github.com/takahirom/roborazzi)
 ```
 
 Reference images are stored in `shared/src/jvmTest/screenshots/`. Roborazzi's Compose Desktop support is experimental, and screenshots can vary across operating systems, fonts, and graphics environments. Until a canonical CI environment is configured, reference images should be recorded and verified on the same environment.
+
+## Running opencode
+
+Open a terminal in the project root and run:
+
+```shell
+opencode
+```
 
 ## License
 
