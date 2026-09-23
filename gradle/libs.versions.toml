@@ -9,11 +9,15 @@ kotlinx-coroutines = "1.11.0"
 kotlinx-datetime = "0.8.0-0.6.x-compat"
 material3 = "1.11.0-alpha07"
 klogging = "0.11.8"
+mvikotlin = "4.4.0"
 roborazzi = "1.70.0"
 room = "3.0.1"
 sqlite = "2.7.0"
 
 [libraries]
+mvikotlin-core = { module = "com.arkivanov.mvikotlin:mvikotlin", version.ref = "mvikotlin" }
+mvikotlin-main = { module = "com.arkivanov.mvikotlin:mvikotlin-main", version.ref = "mvikotlin" }
+mvikotlin-coroutines = { module = "com.arkivanov.mvikotlin:mvikotlin-extensions-coroutines", version.ref = "mvikotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { module = "junit:junit", version.ref = "junit" }

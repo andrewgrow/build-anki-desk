@@ -40,6 +40,7 @@ The application is local and single-user, with no backend server or web frontend
 - [Room](https://developer.android.com/kotlin/multiplatform/room) with bundled SQLite for project data.
 - [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime) for date and time handling.
 - Klogging for logging.
+- [MVIKotlin](https://arkivanov.github.io/MVIKotlin/) for MVI state management.
 - [Roborazzi](https://github.com/takahirom/roborazzi) for screenshot testing.
 
 Anki-compatible `.apkg` export is planned using Python and the `genanki` library.

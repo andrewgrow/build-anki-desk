@@ -27,6 +27,7 @@ Third-party software remains subject to its own license terms. The following tab
 | kotlinx.coroutines | 1.11.0 | Apache License 2.0 | [kotlinx.coroutines license](https://github.com/Kotlin/kotlinx.coroutines/blob/master/LICENSE.txt) |
 | kotlinx-datetime | 0.8.0 compatibility artifact (`0.8.0-0.6.x-compat`) | Apache License 2.0 | [kotlinx-datetime license](https://github.com/Kotlin/kotlinx-datetime/blob/master/LICENSE.txt) |
 | Klogging | 0.11.8 | Apache License 2.0 | [Klogging license](https://github.com/klogging/klogging/blob/main/LICENSE.txt) |
+| MVIKotlin | 4.4.0 | Apache License 2.0 | [MVIKotlin license](https://github.com/arkivanov/MVIKotlin/blob/master/LICENSE) |
 | Kotlin Symbol Processing (KSP) | 2.3.11 | Apache License 2.0 | [KSP license](https://github.com/google/ksp/blob/main/LICENSE) |
 | Roborazzi | 1.70.0 | Apache License 2.0 | [Roborazzi license](https://github.com/takahirom/roborazzi/blob/main/LICENSE) |
 | JUnit 4 | 4.13.2 | Eclipse Public License 1.0 | [JUnit 4 license](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) |

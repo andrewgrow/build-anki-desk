@@ -9,13 +9,25 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import ankideckbuilder.ui.components.projects.ProjectsComponent
+import ankideckbuilder.ui.components.projects.UiState.NoProjects
 import ankideckbuilder.ui.theme.Spacing
+import com.arkivanov.decompose.extensions.compose.subscribeAsState
 
 @Composable
 fun ProjectsContent(component: ProjectsComponent) {
+    val state by component.uiState.subscribeAsState()
+
+    when (state) {
+        NoProjects -> NoProjectsContent(onAddProject = component::onAddProject)
+    }
+}
+
+@Composable
+private fun NoProjectsContent(onAddProject: () -> Unit) {
     Column(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.primaryContainer)
@@ -28,7 +40,7 @@ fun ProjectsContent(component: ProjectsComponent) {
         ),
     ) {
         Text("You have not any projects yet")
-        Button(onClick = component::onAddProject) {
+        Button(onClick = onAddProject) {
             Text("Add Project")
         }
     }
