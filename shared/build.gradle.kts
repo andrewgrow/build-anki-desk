@@ -21,6 +21,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.decompose)
+            implementation(libs.decompose.extensionsCompose)
             implementation(libs.kotlinx.coroutinesCore)
             api(libs.kotlinx.datetime)
             implementation(libs.klogging)

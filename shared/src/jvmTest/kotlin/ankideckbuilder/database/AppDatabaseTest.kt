@@ -2,7 +2,8 @@ package ankideckbuilder.database
 
 import ankideckbuilder.database.project.ProjectEntity
 import ankideckbuilder.domain.models.project.Project
-import java.nio.file.Files
+import org.junit.Rule
+import org.junit.rules.TemporaryFolder
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
@@ -10,9 +11,12 @@ import kotlin.test.assertEquals
 import kotlin.time.Instant
 
 class AppDatabaseTest {
+    @get:Rule
+    val temporaryFolder = TemporaryFolder()
+
     @Test
     fun storesAndObservesProjects() = runBlocking {
-        val directory = Files.createTempDirectory("anki-deck-builder-test-")
+        val directory = temporaryFolder.root.toPath()
         val database = buildDatabase(createDatabaseBuilder(directory.resolve("test.db")))
 
         try {
@@ -34,7 +38,6 @@ class AppDatabaseTest {
             )
         } finally {
             database.close()
-            directory.toFile().deleteRecursively()
         }
     }
 }

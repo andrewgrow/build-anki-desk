@@ -31,11 +31,18 @@ The Kotlin application owns the desktop UI, application logic, and local project
 - export manifest generation;
 - Anki package export.
 
-[Decompose](https://arkivanov.github.io/Decompose/) provides lifecycle-aware application components and keeps component logic separate from Compose content. The initial integration contains only the root component and desktop lifecycle; navigation and screen-specific child components will be introduced with the first real workflows.
+## Technologies
 
-Anki package generation is delegated internally to a small Python worker using the `genanki` library. The worker consumes a manifest and local media prepared by the Kotlin application and produces the final `.apkg` file. Python is an implementation detail and does not provide a separate backend or user interface.
+The application is local and single-user, with no backend server or web frontend. Project data and media are stored locally.
 
-The application is local and single-user. Structured project metadata is stored locally in a [Room](https://developer.android.com/kotlin/multiplatform/room) database backed by bundled SQLite. Room entities and DAOs live in shared code, while the JVM-specific database builder selects the correct application-data directory for macOS, Windows, or Linux. Timestamps use `Instant` with [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime) and are persisted as Unix epoch milliseconds. Generated images and audio remain regular files; the database will store their paths and metadata rather than binary media.
+- Kotlin/JVM and Compose Multiplatform Desktop for the application and UI.
+- [Decompose](https://arkivanov.github.io/Decompose/) for navigation and lifecycle management.
+- [Room](https://developer.android.com/kotlin/multiplatform/room) with bundled SQLite for project data.
+- [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime) for date and time handling.
+- Klogging for logging.
+- [Roborazzi](https://github.com/takahirom/roborazzi) for screenshot testing.
+
+Anki-compatible `.apkg` export is planned using Python and the `genanki` library.
 
 ## Initial milestone
 
@@ -96,14 +103,19 @@ Gradle skips tests when nothing has changed since the last run. To force a full 
 ./gradlew cleanJvmTest allTests --no-build-cache
 ```
 
-Desktop screenshot tests use [Roborazzi](https://github.com/takahirom/roborazzi). The root test captures both the initial UI and its expanded state after clicking the button. Ordinary `jvmTest` and IDE test runs verify screenshots by default. Record approved reference images only after reviewing an intentional UI change, or run verification explicitly:
+Desktop screenshot tests use [Roborazzi](https://github.com/takahirom/roborazzi). Ordinary `jvmTest` and IDE test runs verify screenshots by default. To update reference images after an intentional UI change:
 
 ```shell
 ./gradlew :shared:recordRoborazziJvm
+```
+
+Review the updated images before committing them. To verify screenshots explicitly:
+
+```shell
 ./gradlew :shared:verifyRoborazziJvm
 ```
 
-Reference images are stored in `shared/src/jvmTest/screenshots/`. Roborazzi's Compose Desktop support is experimental, and screenshots can vary across operating systems, fonts, and graphics environments. Until a canonical CI environment is configured, reference images should be recorded and verified on the same environment.
+Reference images are stored in `shared/src/jvmTest/screenshots/`. Roborazzi's Compose Desktop support is experimental, and screenshots can vary across operating systems, fonts, and graphics environments. Record and verify reference images in the same environment.
 
 ## Running opencode
 

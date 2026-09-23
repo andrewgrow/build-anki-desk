@@ -1,51 +1,17 @@
 package ankideckbuilder.ui.compose.application
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
-
-import ankideckbuilder.shared.generated.resources.Res
-import ankideckbuilder.shared.generated.resources.compose_multiplatform
+import androidx.compose.runtime.Composable
+import ankideckbuilder.ui.compose.projects.ProjectsContent
+import com.arkivanov.decompose.extensions.compose.stack.Children
 import ankideckbuilder.ui.components.application.RootComponent
-import ankideckbuilder.ui.compose.Greeting
 
 @Composable
 fun RootContent(component: RootComponent) {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-
-            AnimatedVisibility(showContent) {
-                val platformName = component.platform.name
-                val greeting = remember(platformName) { Greeting().greet(platformName) }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
+        Children(stack = component.childStack) { child ->
+            when (val instance = child.instance) {
+                is RootComponent.Child.Projects -> ProjectsContent(instance.component)
             }
         }
     }
