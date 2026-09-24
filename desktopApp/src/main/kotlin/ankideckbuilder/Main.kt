@@ -3,16 +3,16 @@ package ankideckbuilder
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import com.arkivanov.decompose.DefaultComponentContext
-import com.arkivanov.decompose.extensions.compose.lifecycle.LifecycleController
-import com.arkivanov.essenty.lifecycle.LifecycleRegistry
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.swing.Swing
 import ankideckbuilder.ui.components.application.DefaultRootComponent
 import ankideckbuilder.ui.components.application.RootComponent
 import ankideckbuilder.ui.compose.application.RootContent
+import com.arkivanov.decompose.DefaultComponentContext
+import com.arkivanov.decompose.extensions.compose.lifecycle.LifecycleController
+import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import javax.swing.SwingUtilities
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.swing.Swing
 
 // default JVM entry point
 fun main() {
@@ -27,10 +27,7 @@ fun main() {
 }
 
 // Starts the shared application root and hosts its Compose content.
-fun runApplication(
-    rootComponent: RootComponent,
-    lifecycle: LifecycleRegistry,
-) = application {
+fun runApplication(rootComponent: RootComponent, lifecycle: LifecycleRegistry) = application {
     val windowState = rememberWindowState()
 
     LifecycleController(lifecycle, windowState)
@@ -44,9 +41,8 @@ fun runApplication(
     }
 }
 
-private fun <T> runOnUiThread(block: () -> T): T =
-    if (SwingUtilities.isEventDispatchThread()) {
-        block()
-    } else {
-        runBlocking(Dispatchers.Swing) { block() }
-    }
+private fun <T> runOnUiThread(block: () -> T): T = if (SwingUtilities.isEventDispatchThread()) {
+    block()
+} else {
+    runBlocking(Dispatchers.Swing) { block() }
+}

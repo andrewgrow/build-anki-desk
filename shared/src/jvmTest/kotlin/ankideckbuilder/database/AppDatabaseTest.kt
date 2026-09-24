@@ -1,25 +1,25 @@
 package ankideckbuilder.database
 
+import androidx.sqlite.SQLiteException
 import ankideckbuilder.database.project.ProjectEntity
 import ankideckbuilder.domain.models.project.Project
-import org.junit.Rule
-import org.junit.Before
-import org.junit.After
-import org.junit.rules.TemporaryFolder
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.time.Instant
-import androidx.sqlite.SQLiteException
-import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeout
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Instant
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.rules.TemporaryFolder
 
 class AppDatabaseTest {
     @get:Rule

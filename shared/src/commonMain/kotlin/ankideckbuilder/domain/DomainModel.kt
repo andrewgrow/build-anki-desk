@@ -1,3 +1,3 @@
-package domain.models.project
+package ankideckbuilder.domain
 
 interface DomainModel

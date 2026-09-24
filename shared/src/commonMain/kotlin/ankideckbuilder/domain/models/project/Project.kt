@@ -1,6 +1,6 @@
 package ankideckbuilder.domain.models.project
 
-import domain.models.project.DomainModel
+import ankideckbuilder.domain.DomainModel
 import kotlin.time.Instant
 
 data class Project(
@@ -8,4 +8,4 @@ data class Project(
     val name: String,
     val createdAt: Instant,
     val updatedAt: Instant,
-): DomainModel
+) : DomainModel

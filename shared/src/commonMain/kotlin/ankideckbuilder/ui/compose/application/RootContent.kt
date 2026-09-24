@@ -2,9 +2,9 @@ package ankideckbuilder.ui.compose.application
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import ankideckbuilder.ui.components.application.RootComponent
 import ankideckbuilder.ui.compose.projects.ProjectsContent
 import com.arkivanov.decompose.extensions.compose.stack.Children
-import ankideckbuilder.ui.components.application.RootComponent
 
 @Composable
 fun RootContent(component: RootComponent) {

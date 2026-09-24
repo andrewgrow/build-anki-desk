@@ -33,6 +33,9 @@ Third-party software remains subject to its own license terms. The following tab
 | JUnit 4 | 4.13.2 | Eclipse Public License 1.0 | [JUnit 4 license](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) |
 | Gradle Wrapper and Gradle build tool | 9.3.1 | Apache License 2.0 | [Gradle license](https://github.com/gradle/gradle/blob/master/LICENSE) |
 | Kover | 0.9.9 | Apache License 2.0 | [Kover license](https://github.com/Kotlin/kotlinx-kover/blob/main/LICENSE) |
+| Detekt | 2.0.0-alpha.6 | Apache License 2.0 | [Detekt license](https://github.com/detekt/detekt/blob/main/LICENSE) |
+| ktlint | 1.8.0 | MIT License | [ktlint license](https://github.com/ktlint/ktlint/blob/master/LICENSE) |
+| ktlint Gradle plugin | 14.2.0 | MIT License | [ktlint Gradle plugin license](https://github.com/JLLeitschuh/ktlint-gradle/blob/main/LICENSE.txt) |
 
 The license references above are provided for convenience. The license and notice files distributed with each dependency are authoritative. Dependencies may also bring transitive software with additional notices or license terms. Before distributing an application package, the resolved dependency graph must be reviewed and all notices required by the packaged software must be included with the release.
 

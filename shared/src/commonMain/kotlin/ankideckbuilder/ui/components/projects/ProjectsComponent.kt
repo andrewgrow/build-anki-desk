@@ -17,7 +17,8 @@ interface ProjectsComponent {
 class DefaultProjectsComponent(
     componentContext: ComponentContext,
     storeFactory: StoreFactory = DefaultStoreFactory(),
-) : ProjectsComponent, ComponentContext by componentContext {
+) : ProjectsComponent,
+    ComponentContext by componentContext {
     private val stateStore = createProjectsStateStore(storeFactory)
     private val mutableValue = MutableValue(stateStore.state)
     override val uiState: Value<UiState> = mutableValue

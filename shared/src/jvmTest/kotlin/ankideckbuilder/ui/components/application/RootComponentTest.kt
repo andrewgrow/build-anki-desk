@@ -1,7 +1,7 @@
 package ankideckbuilder.ui.components.application
 
-import ankideckbuilder.ui.components.projects.UiState
 import ankideckbuilder.testing.ComponentTest
+import ankideckbuilder.ui.components.projects.UiState
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.resume
 import kotlin.test.Test

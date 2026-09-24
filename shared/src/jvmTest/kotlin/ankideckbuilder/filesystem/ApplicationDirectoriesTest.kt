@@ -11,7 +11,7 @@ class ApplicationDirectoriesTest {
     fun macUsesApplicationSupport() {
         assertEquals(
             home.resolve("Library/Application Support/AnkiDeckBuilder"),
-            resolveApplicationDataDirectory(home, "Mac OS X", "/ignored", "/ignored")
+            resolveApplicationDataDirectory(home, "Mac OS X", "/ignored", "/ignored"),
         )
     }
 
@@ -19,7 +19,7 @@ class ApplicationDirectoriesTest {
     fun windowsUsesAppData() {
         assertEquals(
             Path.of("/roaming/AnkiDeckBuilder"),
-            resolveApplicationDataDirectory(home, "Windows 11", "/roaming", null)
+            resolveApplicationDataDirectory(home, "Windows 11", "/roaming", null),
         )
     }
 
@@ -28,7 +28,7 @@ class ApplicationDirectoriesTest {
         for (value in listOf(null, "", "  ")) {
             assertEquals(
                 home.resolve("AppData/Roaming/AnkiDeckBuilder"),
-                resolveApplicationDataDirectory(home, "Windows 11", value, null)
+                resolveApplicationDataDirectory(home, "Windows 11", value, null),
             )
         }
     }
@@ -37,7 +37,7 @@ class ApplicationDirectoriesTest {
     fun linuxUsesXdgDataHome() {
         assertEquals(
             Path.of("/data/AnkiDeckBuilder"),
-            resolveApplicationDataDirectory(home, "Linux", null, "/data")
+            resolveApplicationDataDirectory(home, "Linux", null, "/data"),
         )
     }
 
@@ -46,7 +46,7 @@ class ApplicationDirectoriesTest {
         for (value in listOf(null, "", "  ")) {
             assertEquals(
                 home.resolve(".local/share/AnkiDeckBuilder"),
-                resolveApplicationDataDirectory(home, "Linux", null, value)
+                resolveApplicationDataDirectory(home, "Linux", null, value),
             )
         }
     }

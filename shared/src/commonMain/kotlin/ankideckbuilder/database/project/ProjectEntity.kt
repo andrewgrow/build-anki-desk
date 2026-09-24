@@ -25,12 +25,12 @@ data class ProjectEntity(
         updatedAt = Instant.fromEpochMilliseconds(updatedAtEpochMilliseconds),
     )
 
-    companion object: DatabaseModelFactory<Project, ProjectEntity> {
+    companion object : DatabaseModelFactory<Project, ProjectEntity> {
         override fun fromDomainModel(domainModel: Project) = ProjectEntity(
-        id = domainModel.id,
-        name = domainModel.name,
-        createdAtEpochMilliseconds = domainModel.createdAt.toEpochMilliseconds(),
-        updatedAtEpochMilliseconds = domainModel.updatedAt.toEpochMilliseconds(),
+            id = domainModel.id,
+            name = domainModel.name,
+            createdAtEpochMilliseconds = domainModel.createdAt.toEpochMilliseconds(),
+            updatedAtEpochMilliseconds = domainModel.updatedAt.toEpochMilliseconds(),
         )
     }
 }

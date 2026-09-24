@@ -42,6 +42,8 @@ The application is local and single-user, with no backend server or web frontend
 - Klogging for logging.
 - [MVIKotlin](https://arkivanov.github.io/MVIKotlin/) for MVI state management.
 - [Roborazzi](https://github.com/takahirom/roborazzi) for screenshot testing.
+- [Detekt](https://detekt.dev/) for static code analysis.
+- [ktlint](https://ktlint.github.io/) for Kotlin formatting checks and automatic formatting.
 
 Anki-compatible `.apkg` export is planned using Python and the `genanki` library.
 
@@ -117,6 +119,40 @@ Review the updated images before committing them. To verify screenshots explicit
 ```
 
 Reference images are stored in `shared/src/jvmTest/screenshots/`. Roborazzi's Compose Desktop support is experimental, and screenshots can vary across operating systems, fonts, and graphics environments. Record and verify reference images in the same environment.
+
+## Static analysis
+
+Run Detekt locally from the project root:
+
+```shell
+./gradlew detekt
+```
+
+The HTML report is at `build/reports/detekt/detekt.html`. Analysis covers Kotlin application and test sources in both modules, excluding generated code. Default rules are enabled with adjustments for Compose naming, test fixtures, and design tokens. This initial setup runs without type resolution, so rules requiring type information are not evaluated.
+
+Detekt is pinned to `2.0.0-alpha.6` to match the project's Kotlin version; this is a pre-release version.
+
+## Code formatting
+
+Check Kotlin sources, tests, and Gradle Kotlin scripts in all modules:
+
+```shell
+./gradlew ktlintCheck
+```
+
+Apply automatic formatting, then review the diff before committing:
+
+```shell
+./gradlew ktlintFormat
+```
+
+Formatting uses the `android_studio` style configured in `.editorconfig`, with a 100-character line limit and support for Compose function names. Enable EditorConfig support in your IDE to share applicable formatting settings. The IDE formatter and ktlint can still differ; use `ktlintFormat` for the canonical project formatting. Generated sources are excluded. Reports are written under each project's `build/reports/ktlint/` directory. Formatting runs only when explicitly requested; checks do not modify files.
+
+To run formatting checks, static analysis, all tests, and the coverage check together:
+
+```shell
+./gradlew ktlintCheck detekt allTests :koverVerify
+```
 
 ## Local code coverage
 

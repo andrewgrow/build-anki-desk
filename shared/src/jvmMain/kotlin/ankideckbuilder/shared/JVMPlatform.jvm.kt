@@ -1,6 +1,6 @@
 package ankideckbuilder.shared
 
-class JVMPlatform: PlatformDependency {
+class JVMPlatform : PlatformDependency {
     override val name: String = "Java ${System.getProperty("java.version")}"
 }
 

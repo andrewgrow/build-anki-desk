@@ -8,8 +8,9 @@ import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 // Intents and one-off labels will be introduced with the first project actions.
 internal interface ProjectsStateStore : Store<Nothing, UiState, Nothing>
 
-internal fun createProjectsStateStore(storeFactory: StoreFactory): ProjectsStateStore =
-    object : ProjectsStateStore, Store<Nothing, UiState, Nothing> by storeFactory.create(
+internal fun createProjectsStateStore(storeFactory: StoreFactory): ProjectsStateStore = object :
+    ProjectsStateStore,
+    Store<Nothing, UiState, Nothing> by storeFactory.create(
         name = "ProjectsStateStore",
         initialState = NoProjects,
         executorFactory = {

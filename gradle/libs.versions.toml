@@ -1,4 +1,7 @@
 [versions]
+ktlint = "1.8.0"
+ktlintGradle = "14.2.0"
+detekt = "2.0.0-alpha.6"
 kover = "0.9.9"
 androidx-lifecycle = "2.11.0-beta01"
 composeMultiplatform = "1.11.1"
@@ -42,6 +45,8 @@ room-runtime = { module = "androidx.room3:room3-runtime", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 [plugins]
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
