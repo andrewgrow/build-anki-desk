@@ -29,12 +29,14 @@ kotlin {
             implementation(libs.mvikotlin.coroutines)
             implementation(libs.kotlinx.coroutinesCore)
             api(libs.kotlinx.datetime)
-            implementation(libs.klogging)
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        jvmMain.dependencies {
+            implementation(libs.kotlinx.coroutinesSwing)
         }
         jvmTest.dependencies {
             implementation(compose.desktop.uiTestJUnit4)

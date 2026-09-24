@@ -1,6 +1,7 @@
 package ankideckbuilder.ui.components.projects
 
 import ankideckbuilder.testing.ComponentTest
+import ankideckbuilder.ui.threading.runOnUiThread
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.destroy
 import com.arkivanov.essenty.lifecycle.resume
@@ -9,7 +10,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class ProjectsComponentTest : ComponentTest() {
+class DefaultProjectsComponentTest : ComponentTest() {
     @Test
     fun exposesInitialStateAndDisposesStoreWithComponent() {
         runOnUiThread {

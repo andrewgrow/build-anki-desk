@@ -7,10 +7,6 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
-import com.arkivanov.essenty.lifecycle.doOnCreate
-import io.klogging.config.ANSI_INFO
-import io.klogging.config.loggingConfiguration
-import io.klogging.noCoLogger
 
 interface RootComponent {
     val childStack: Value<ChildStack<*, Child>>
@@ -23,15 +19,6 @@ interface RootComponent {
 class DefaultRootComponent(componentContext: ComponentContext) :
     RootComponent,
     ComponentContext by componentContext {
-    private val logger by lazy { noCoLogger("App") }
-
-    init {
-        loggingConfiguration { ANSI_INFO() }
-        lifecycle.doOnCreate {
-            logger.info("Application started")
-        }
-    }
-
     private val navigation = StackNavigation<Configuration>()
 
     override val childStack: Value<ChildStack<*, RootComponent.Child>> = childStack(

@@ -9,12 +9,12 @@ plugins {
 }
 
 dependencies {
+    implementation(libs.klogging)
     implementation(project(":shared"))
 
     implementation(compose.desktop.currentOs)
     implementation(libs.decompose)
     implementation(libs.decompose.extensionsCompose)
-    implementation(libs.kotlinx.coroutinesSwing)
 
     implementation(libs.compose.uiToolingPreview)
 }

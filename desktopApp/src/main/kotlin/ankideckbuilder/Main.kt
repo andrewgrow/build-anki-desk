@@ -6,23 +6,24 @@ import androidx.compose.ui.window.rememberWindowState
 import ankideckbuilder.ui.components.application.DefaultRootComponent
 import ankideckbuilder.ui.components.application.RootComponent
 import ankideckbuilder.ui.compose.application.RootContent
+import ankideckbuilder.ui.threading.runOnUiThread
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.extensions.compose.lifecycle.LifecycleController
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
-import javax.swing.SwingUtilities
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.swing.Swing
+import io.klogging.config.ANSI_INFO
+import io.klogging.config.loggingConfiguration
+import io.klogging.noCoLogger
 
 // default JVM entry point
 fun main() {
-    val lifecycle = LifecycleRegistry()
-    val rootComponent = runOnUiThread {
-        DefaultRootComponent(
-            componentContext = DefaultComponentContext(lifecycle = lifecycle),
-        )
-    }
+    loggingConfiguration { ANSI_INFO() }
+    noCoLogger("App").info("Application started")
 
+    val lifecycle = LifecycleRegistry()
+    val context = DefaultComponentContext(lifecycle = lifecycle)
+    val rootComponent = runOnUiThread {
+        DefaultRootComponent(componentContext = context)
+    }
     runApplication(rootComponent, lifecycle)
 }
 
@@ -39,10 +40,4 @@ fun runApplication(rootComponent: RootComponent, lifecycle: LifecycleRegistry) =
     ) {
         RootContent(rootComponent)
     }
-}
-
-private fun <T> runOnUiThread(block: () -> T): T = if (SwingUtilities.isEventDispatchThread()) {
-    block()
-} else {
-    runBlocking(Dispatchers.Swing) { block() }
 }
