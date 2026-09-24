@@ -118,6 +118,16 @@ Review the updated images before committing them. To verify screenshots explicit
 
 Reference images are stored in `shared/src/jvmTest/screenshots/`. Roborazzi's Compose Desktop support is experimental, and screenshots can vary across operating systems, fonts, and graphics environments. Record and verify reference images in the same environment.
 
+## Local code coverage
+
+[Kover](https://github.com/Kotlin/kotlinx-kover) measures JVM code coverage across `shared` and `desktopApp`. To run tests, generate the combined HTML and XML reports, and check the minimum coverage:
+
+```shell
+./gradlew allTests :koverHtmlReport :koverXmlReport :koverVerify
+```
+
+Open `build/reports/kover/html/index.html` for the HTML report. The XML report is at `build/reports/kover/report.xml`. The initial minimum is 75% line coverage. Generated Room implementations and Compose resources are excluded; application code, including the desktop entry point, remains included. Add behavioral tests alongside new application logic.
+
 ## Running opencode
 
 Open a terminal in the project root and run:

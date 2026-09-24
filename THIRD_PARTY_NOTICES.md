@@ -32,6 +32,7 @@ Third-party software remains subject to its own license terms. The following tab
 | Roborazzi | 1.70.0 | Apache License 2.0 | [Roborazzi license](https://github.com/takahirom/roborazzi/blob/main/LICENSE) |
 | JUnit 4 | 4.13.2 | Eclipse Public License 1.0 | [JUnit 4 license](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) |
 | Gradle Wrapper and Gradle build tool | 9.3.1 | Apache License 2.0 | [Gradle license](https://github.com/gradle/gradle/blob/master/LICENSE) |
+| Kover | 0.9.9 | Apache License 2.0 | [Kover license](https://github.com/Kotlin/kotlinx-kover/blob/main/LICENSE) |
 
 The license references above are provided for convenience. The license and notice files distributed with each dependency are authoritative. Dependencies may also bring transitive software with additional notices or license terms. Before distributing an application package, the resolved dependency graph must be reviewed and all notices required by the packaged software must be included with the release.
 

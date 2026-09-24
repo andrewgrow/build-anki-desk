@@ -1,4 +1,5 @@
 [versions]
+kover = "0.9.9"
 androidx-lifecycle = "2.11.0-beta01"
 composeMultiplatform = "1.11.1"
 decompose = "3.5.0"
@@ -41,6 +42,7 @@ room-runtime = { module = "androidx.room3:room3-runtime", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 [plugins]
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
