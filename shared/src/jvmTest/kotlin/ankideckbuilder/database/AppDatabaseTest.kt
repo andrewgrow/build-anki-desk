@@ -21,6 +21,10 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 
+private const val PROJECT_NAME = "Test Project"
+private const val SECOND_PROJECT_NAME = "Second Test Project"
+private const val UPDATED_PROJECT_NAME = "Updated Test Project"
+
 class AppDatabaseTest {
     @get:Rule
     val temporaryFolder = TemporaryFolder()
@@ -40,7 +44,7 @@ class AppDatabaseTest {
         }
     }
 
-    private fun entity(name: String = "Marine", updatedAt: Long = 1_000L) = ProjectEntity(
+    private fun entity(name: String = PROJECT_NAME, updatedAt: Long = 1_000L) = ProjectEntity(
         name = name,
         createdAtEpochMilliseconds = 500L,
         updatedAtEpochMilliseconds = updatedAt,
@@ -51,9 +55,9 @@ class AppDatabaseTest {
         val dao = database.projectDao()
         assertNull(dao.findById(99L))
         val firstId = dao.insert(entity())
-        val secondId = dao.insert(entity("Navigation"))
+        val secondId = dao.insert(entity(SECOND_PROJECT_NAME))
         assertNotEquals(firstId, secondId)
-        val updated = entity("Updated", 2_000L).copy(id = firstId)
+        val updated = entity(UPDATED_PROJECT_NAME, 2_000L).copy(id = firstId)
         dao.update(updated)
         assertEquals(updated, dao.findById(firstId))
         dao.delete(updated)
@@ -90,7 +94,7 @@ class AppDatabaseTest {
                 val project = entity()
                 val stored = project.copy(id = dao.insert(project))
                 assertEquals(listOf(stored), values.receive())
-                val updated = stored.copy(name = "Updated")
+                val updated = stored.copy(name = UPDATED_PROJECT_NAME)
                 dao.update(updated)
                 assertEquals(listOf(updated), values.receive())
                 dao.delete(updated)
@@ -125,7 +129,7 @@ class AppDatabaseTest {
     fun storesAndObservesProjects() = runBlocking {
         val timestamp = Instant.fromEpochMilliseconds(1_000L)
         val project = Project(
-            name = "Marine English for Sailors",
+            name = PROJECT_NAME,
             createdAt = timestamp,
             updatedAt = timestamp,
         )

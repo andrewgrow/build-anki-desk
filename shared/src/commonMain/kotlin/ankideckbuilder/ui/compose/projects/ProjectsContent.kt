@@ -14,13 +14,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import ankideckbuilder.shared.generated.resources.Res
+import ankideckbuilder.shared.generated.resources.projects_add
+import ankideckbuilder.shared.generated.resources.projects_empty
 import ankideckbuilder.ui.components.projects.ProjectsComponent
 import ankideckbuilder.ui.components.projects.UiState.NoProjects
 import ankideckbuilder.ui.compose.projects.editor.EditorContent
 import ankideckbuilder.ui.theme.Spacing
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
+import org.jetbrains.compose.resources.stringResource
 
-const val PROJECTS_SCREEN_TAG = "projects.screen"
+internal const val PROJECTS_SCREEN_TAG = "projects.screen"
 
 @Composable
 fun ProjectsContent(component: ProjectsComponent) {
@@ -38,6 +42,9 @@ fun ProjectsContent(component: ProjectsComponent) {
 
 @Composable
 private fun NoProjectsContent(onAddProject: () -> Unit) {
+    val emptyMessage = stringResource(Res.string.projects_empty)
+    val addProjectLabel = stringResource(Res.string.projects_add)
+
     Column(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.primaryContainer)
@@ -49,9 +56,9 @@ private fun NoProjectsContent(onAddProject: () -> Unit) {
             alignment = Alignment.CenterVertically,
         ),
     ) {
-        Text("You have not any projects yet")
+        Text(emptyMessage)
         Button(onClick = onAddProject) {
-            Text("Add Project")
+            Text(addProjectLabel)
         }
     }
 }
