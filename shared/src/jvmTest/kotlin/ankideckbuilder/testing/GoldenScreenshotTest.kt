@@ -6,8 +6,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.ComposeUiTest
+import androidx.compose.ui.test.DesktopComposeUiTest
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.isRoot
+import androidx.compose.ui.test.v2.runDesktopComposeUiTest as runDesktopTest
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import io.github.takahirom.roborazzi.captureRoboImage
@@ -21,39 +24,51 @@ import org.junit.rules.TestName
  */
 abstract class GoldenScreenshotTest {
     /** Requested content size in dp, subject to the test host's layout constraints. */
-    data class Screen(val width: Dp, val height: Dp)
+    data class ScreenSize(val width: Dp, val height: Dp)
 
     companion object {
-        internal val defaultScreen = Screen(800.dp, 600.dp)
+        internal val defaultScreen = ScreenSize(800.dp, 600.dp)
     }
 
     @get:Rule
     val testName = TestName()
 
+    /** Runs a desktop Compose test with the requested host screen size. */
+    @OptIn(ExperimentalTestApi::class)
+    protected fun runDesktopComposeUiTest(
+        screenSize: ScreenSize = defaultScreen,
+        block: suspend DesktopComposeUiTest.() -> Unit,
+    ) = runDesktopTest(
+        width = screenSize.width.value.toInt(),
+        height = screenSize.height.value.toInt(),
+        block = block,
+    )
+
     /** Calls [setGoldenContent] then [captureGolden] for tests without intermediate actions. */
     @OptIn(ExperimentalTestApi::class)
     protected fun setAndCaptureGolden(
         composeUiTest: ComposeUiTest,
-        screen: Screen = defaultScreen,
+        screenSize: ScreenSize = defaultScreen,
+        captureTag: String? = null,
         content: @Composable () -> Unit,
     ) {
-        setGoldenContent(composeUiTest, screen, content)
-        captureGolden(composeUiTest)
+        setGoldenContent(composeUiTest, screenSize, content)
+        captureGolden(composeUiTest, captureTag)
     }
 
     /**
-     * Sets themed content at [screen] size without capturing. Call once per Compose test scope,
+     * Sets themed content at [screenSize] size without capturing. Call once per Compose test scope,
      * then perform any actions before [captureGolden].
      */
     @OptIn(ExperimentalTestApi::class)
     protected fun setGoldenContent(
         composeUiTest: ComposeUiTest,
-        screen: Screen = defaultScreen,
+        screenSize: ScreenSize = defaultScreen,
         content: @Composable () -> Unit,
     ) {
         composeUiTest.setContent {
             MaterialTheme {
-                Box(Modifier.size(width = screen.width, height = screen.height)) {
+                Box(Modifier.size(width = screenSize.width, height = screenSize.height)) {
                     content()
                 }
             }
@@ -62,10 +77,11 @@ abstract class GoldenScreenshotTest {
 
     /**
      * Waits for Compose idleness and captures existing content during a running JUnit test.
+     * Captures [captureTag] when provided, otherwise the single root.
      * For asynchronous loading, wait for the expected UI state before calling this method.
      */
     @OptIn(ExperimentalTestApi::class)
-    protected fun captureGolden(composeUiTest: ComposeUiTest) {
+    protected fun captureGolden(composeUiTest: ComposeUiTest, captureTag: String? = null) {
         composeUiTest.waitForIdle()
         val componentPath = this@GoldenScreenshotTest.javaClass.name
             .removePrefix("ankideckbuilder.")
@@ -74,6 +90,7 @@ abstract class GoldenScreenshotTest {
         val methodName = checkNotNull(testName.methodName) {
             "captureGolden() must be called from a running JUnit test."
         }
-        composeUiTest.onRoot().captureRoboImage("$componentPath/$methodName.png")
+        val matcher = captureTag?.let { hasTestTag(it) } ?: isRoot()
+        composeUiTest.onNode(matcher).captureRoboImage("$componentPath/$methodName.png")
     }
 }
