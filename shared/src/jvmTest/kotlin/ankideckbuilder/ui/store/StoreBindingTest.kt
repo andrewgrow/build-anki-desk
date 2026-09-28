@@ -2,14 +2,21 @@ package ankideckbuilder.ui.store
 
 import ankideckbuilder.testing.ComponentTest
 import ankideckbuilder.ui.threading.runOnUiThread
+import com.arkivanov.essenty.lifecycle.create
 import com.arkivanov.essenty.lifecycle.destroy
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import org.junit.Before
 
 class StoreBindingTest : ComponentTest() {
+    @Before
+    fun createLifecycle() = runOnUiThread {
+        lifecycle.create()
+    }
+
     @Test
     fun exposesCurrentStateAndSubsequentUpdates() = runOnUiThread {
         val store = TestStore()

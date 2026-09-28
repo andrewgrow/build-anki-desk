@@ -15,9 +15,11 @@ interface ProjectsComponent {
 class DefaultProjectsComponent(
     componentContext: ComponentContext,
     storeFactory: StoreFactory = DefaultStoreFactory(),
+    executorFactory: () -> ProjectsExecutor = ::RealProjectsExecutor,
 ) : ProjectsComponent,
     ComponentContext by componentContext {
-    private val stateStore = createProjectsStateStore(storeFactory)
+    private val stateStore = createProjectsStore(storeFactory, executorFactory)
+        .also { it.accept(ProjectsIntent.LoadProjects) }
     override val uiState: Value<UiState> = bindStoreToLifecycle(stateStore, lifecycle)
 
     override fun onAddProject() {

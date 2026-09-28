@@ -4,6 +4,7 @@ import ankideckbuilder.testing.ComponentTest
 import ankideckbuilder.ui.threading.runOnUiThread
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.destroy
+import com.arkivanov.essenty.lifecycle.pause
 import com.arkivanov.essenty.lifecycle.resume
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -13,20 +14,30 @@ import kotlin.test.assertTrue
 class DefaultProjectsComponentTest : ComponentTest() {
     @Test
     fun exposesInitialStateAndDisposesStoreWithComponent() {
+        val expectedLoading = 1
         runOnUiThread {
             lifecycle.resume()
             val factory = RecordingStoreFactory()
+            val executor = TestProjectsExecutor()
             val component = DefaultProjectsComponent(
                 componentContext = DefaultComponentContext(lifecycle),
                 storeFactory = factory,
+                executorFactory = { executor },
             )
 
             assertEquals(UiState.NoProjects, factory.store.state)
             assertEquals(UiState.NoProjects, component.uiState.value)
             assertFalse(factory.store.isDisposed)
+            assertEquals(expectedLoading, executor.loadCount)
+            assertFalse(executor.isDisposed)
+
+            lifecycle.pause()
+            lifecycle.resume()
+            assertEquals(expectedLoading, executor.loadCount)
 
             lifecycle.destroy()
             assertTrue(factory.store.isDisposed)
+            assertTrue(executor.isDisposed)
         }
     }
 }
